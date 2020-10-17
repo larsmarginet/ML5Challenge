@@ -28,11 +28,13 @@ import * as THREE from './three.module.js';
 
     let socket;
     let myStream;
+    let ml5stream;
     let peer;
     let clientList = {};
     let isLoggedIn = false;
     let name;
     let interval;
+
 
     const init = async () => {
         $form.addEventListener('submit', async e => {
@@ -43,13 +45,21 @@ import * as THREE from './three.module.js';
                 initSocket();
                 const constraints = { audio: true, video: { width: 1280, height: 720 } };
                 myStream = await navigator.mediaDevices.getUserMedia(constraints);
-                $myVideo.srcObject = myStream;
+                ml5stream = await document.querySelector('#defaultCanvas0').captureStream();
+                $myVideo.srcObject = ml5stream;
                 $myVideo.onloadedmetadata = () => $myVideo.play();
                 $login.style.display = "none";
             }
         });
         requestAnimationFrame(render);
+        // captureUnetVideo()
     };
+
+    // const captureUnetVideo = async () => {
+    //     const $unet = await document.getElementById('defaultCanvas0').captureStream();
+    //     console.log($unet);
+    //     captureUnetVideo();
+    // }
 
     const randomBoolean = () => Math.random() >= 0.5;
 
@@ -193,7 +203,7 @@ import * as THREE from './three.module.js';
     });
 
     const createPeer = (initiator, peerId) => {
-        peer = new SimplePeer({ initiator, stream: myStream });
+        peer = new SimplePeer({ initiator, stream: ml5stream });
             peer.data = {
             id: peerId
         };

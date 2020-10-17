@@ -192,13 +192,21 @@ h1 {
     justify-content: center;
 }
 
-.videoView__videos__controls__end{
+.videoView__videos__controls__end {
     cursor: pointer;
 }
 
 .videoView__videos__controls__noise {
-    margin-left: 3rem;
+    margin: 0 3rem;
     cursor: pointer;
+}
+
+.videoView__videos__controls__picture {
+    cursor: pointer;
+}
+
+#defaultCanvas0 {
+    display: none;
 }
 
 @media only screen and (max-width: 760px) {
@@ -218,4 +226,5 @@ h1 {
     .videoView__aside {
         overflow-y: scroll;
     }
-  }
+}
+
