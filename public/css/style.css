@@ -1,0 +1,221 @@
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 1.6rem;
+    background-color: #251C3B;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+#c {
+    position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+h1 {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 5rem;
+    filter: drop-shadow(0 .2rem .4rem rgba(0,0,0,.3));
+    color: #3DC972;
+    margin-bottom: 5rem;
+}
+
+.loginView {
+    background-color: rgba(0, 0, 55, .8);
+    position: absolute;
+    top: 0;
+    height: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+.loginView__innerWrapper {
+    background-color: #645CA7;
+    border-radius: 2rem;
+    width: 50vw;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginView__innerWrapper__title {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 5rem;
+    filter: drop-shadow(0 .2rem .4rem rgba(0,0,0,.3));
+    color: #3DC972;
+    margin-bottom: 5rem;
+}
+
+.loginView__innerWrapper__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 30rem;
+}
+
+.loginView__innerWrapper__form__label {
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.loginView__innerWrapper__form__input {
+    font-size: 1.5rem;
+    padding: 1rem;
+    background-color: #645CA7;
+    border: .2rem solid #3DC972;
+    outline: none;
+    color: white;
+    border-radius: 1rem;
+}
+
+.loginView__innerWrapper__form__input::placeholder {
+    color: white;
+    opacity: .5;
+}
+
+.loginView__innerWrapper__form__submit {
+    border-radius: 1rem;
+    background-color: #3DC972;
+    padding: 1rem;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 7rem;
+}
+
+.loginView__innerWrapper__form__submit:hover {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.videoView {
+    display: grid;
+    grid-template-columns: 30rem auto;
+    height: 100vh;
+}
+
+.videoView__aside {
+    padding: 2rem;
+}
+
+.videoView__videos__otherWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.videoView__videos__otherVideo {
+    width: 100%;
+    height: auto;
+    max-height: 100vh;
+    display: none;
+}
+
+.videoView__videos__otherName {
+    color: white;
+    text-align: end;
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+}
+
+.videoView__videos {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #020015;
+}
+
+.videoView__videos__myWrapper {
+    position: absolute;
+    right: 5rem;
+    bottom: 5rem;
+    width: 25rem;
+}
+
+.videoView__videos__myVideo {
+    width: 100%;
+    height: 100%;
+}
+
+.videoView__videos__myName {
+    color: white;
+    text-align: end;
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+}
+
+.videoView__aside__clients__client {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.videoView__aside__clients__client__callbtn {
+    background: none;
+    border: none;
+    outline: none;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.videoView__videos__controls {
+    position: absolute;
+    bottom: 5rem;
+    left: 0;
+    width: 100%;
+    display: none;
+}
+
+.videoView__videos__controls--visible {
+    display: flex;
+    justify-content: center;
+}
+
+.videoView__videos__controls__end{
+    cursor: pointer;
+}
+
+.videoView__videos__controls__noise {
+    margin-left: 3rem;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 760px) {
+    .loginView__innerWrapper {
+        width: 90vw; 
+        height: 90vh;
+        padding: 2rem;
+    }
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    .videoView {
+        grid-template-columns: 1fr;
+        grid-template-rows: 10rem auto;
+    } 
+    .videoView__aside {
+        overflow-y: scroll;
+    }
+  }
