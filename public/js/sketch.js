@@ -11,13 +11,7 @@ function preload() {
 function setup() {
   const constraints = { 
     audio: false, 
-    video: {
-      mandatory: {
-        minWidth: 240,
-        minHeight: 150
-      },
-      optional: [{ maxFrameRate: 30 }]
-    }
+    video: { width: 250, height: 140 }
   };
   createCanvas(250, 140);
   video = createCapture(constraints);
@@ -32,6 +26,7 @@ function gotResult(error, result) {
     console.error(error);
     return;
   }
+  document.querySelector('.loadingScreen').style.display = "none";
   segmentationImage = result.backgroundMask;
   uNet.segment(video, gotResult);
 }
