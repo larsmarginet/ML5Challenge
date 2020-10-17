@@ -44,6 +44,7 @@ import * as THREE from './three.module.js';
             name = e.target.querySelector('.loginView__innerWrapper__form__input').value;
             isLoggedIn = true;
             if (isLoggedIn) {
+                
                 initSocket();
                 const constraints = { audio: true, video: true };
                 myStream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -75,9 +76,9 @@ import * as THREE from './three.module.js';
     const loop = async () => {
         const results = await classifier.classify($myVideo);
         console.log(`${results[0].label} (Confidence: ${results[0].confidence})`);
-        if (results[0].label == "bored") {
+        if (results[0].label == "bored" && peer) {
             socket.emit('noise', true);
-        } else {
+        } else if (results[0].label == "notBored" && peer) {
             socket.emit('noise', false);
         }
     };
