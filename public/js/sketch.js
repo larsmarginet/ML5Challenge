@@ -41,11 +41,45 @@ function draw() {
   image(segmentationImage, 0, 0, 250, 140);
 }
 
+
+
+const init = () => {
+  loadImages();
+}
+
 const $btn = document.getElementById('imgPickerBtn');
 const $imgPicker = document.querySelector('.imagePicker');
+const $imgList = $imgPicker.querySelector('.imageList');
+const $close = document.getElementById('closeImageList');
+
 $btn.addEventListener('click', () => {
-  console.log('clicked');
-  $imgPicker.classList.add("imagePicker--active")
-  // photo = loadImage('../assets/forest.jpg');
+  if ($imgPicker.classList.contains("imagePicker--active")) {
+    $imgPicker.classList.remove("imagePicker--active");
+  } else {
+    $imgPicker.classList.add("imagePicker--active");
+  }
+});
+
+$close.addEventListener('click', () => {
+  if ($imgPicker.classList.contains("imagePicker--active")) {
+    $imgPicker.classList.remove("imagePicker--active");
+  } else {
+    $imgPicker.classList.add("imagePicker--active");
+  }
 })
+
+const loadImages = () => {
+  for (let i = 0; i < 5; i++) {
+    const $li = document.createElement('li');
+    $li.innerHTML = `<img src="../assets/image${i}.jpg" alt="background image" width="160" height="120" class="backgroundImage" />`;
+    $li.addEventListener('click', () => {
+      document.querySelectorAll('.backgroundImage').forEach(item => item.classList.remove('backgroundImage--active'));
+      photo = loadImage(`../assets/image${i}.jpg`);
+      $li.querySelector('.backgroundImage').classList.add('backgroundImage--active');
+    })
+    $imgList.appendChild($li);
+  }
+}
+
+init();
 

@@ -225,6 +225,31 @@ h1 {
     transform: translateX(0);
 }
 
+.imageList {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.backgroundImage {
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.backgroundImage--active {
+    border: .3rem solid #3DC972;
+}
+
+.closeImageList {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-right: 1rem;
+}
+
 @media only screen and (max-width: 760px) {
     .loginView__innerWrapper {
         width: 90vw; 
