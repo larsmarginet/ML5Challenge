@@ -34,6 +34,8 @@ import * as THREE from './three.module.js';
     let isLoggedIn = false;
     let name;
     let interval;
+    let featureExtractor;
+    let classifier;
 
 
     const init = async () => {
@@ -43,7 +45,7 @@ import * as THREE from './three.module.js';
             isLoggedIn = true;
             if (isLoggedIn) {
                 initSocket();
-                const constraints = { audio: true, video: false };
+                const constraints = { audio: true, video: true };
                 myStream = await navigator.mediaDevices.getUserMedia(constraints);
                 ml5stream = await document.querySelector('#defaultCanvas0').captureStream();
                 // get audio from user
@@ -54,9 +56,30 @@ import * as THREE from './three.module.js';
                 $myVideo.srcObject = ml5stream;
                 $myVideo.onloadedmetadata = () => $myVideo.play();
                 $login.style.display = "none";
+                //featureExtractor
+                $myVideo.width = 250;
+                $myVideo.height = 140;
+                console.log('Loading Mobilenet...');
+                featureExtractor = await ml5.featureExtractor('MobileNet').ready;
+                console.log('Click to label image snapshot');
+                classifier = featureExtractor.classification($myVideo);
+                await classifier.load('../models/model.json');
+                setInterval(function() {
+                    loop();
+                }, 5000);
             }
         });
         requestAnimationFrame(render);
+    };
+
+    const loop = async () => {
+        const results = await classifier.classify($myVideo);
+        console.log(`${results[0].label} (Confidence: ${results[0].confidence})`);
+        if (results[0].label == "bored") {
+            socket.emit('noise', true);
+        } else {
+            socket.emit('noise', false);
+        }
     };
 
     const randomBoolean = () => Math.random() >= 0.5;
