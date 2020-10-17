@@ -43,23 +43,21 @@ import * as THREE from './three.module.js';
             isLoggedIn = true;
             if (isLoggedIn) {
                 initSocket();
-                const constraints = { audio: true, video: { width: 1280, height: 720 } };
+                const constraints = { audio: true, video: false };
                 myStream = await navigator.mediaDevices.getUserMedia(constraints);
                 ml5stream = await document.querySelector('#defaultCanvas0').captureStream();
+                // get audio from user
+                const audioTrack = myStream.getAudioTracks();
+                // add the audio to the ml5 track (because there is no audio from this stream)
+                ml5stream.addTrack(audioTrack[0]);
+                // set the ml5 stream als the main video
                 $myVideo.srcObject = ml5stream;
                 $myVideo.onloadedmetadata = () => $myVideo.play();
                 $login.style.display = "none";
             }
         });
         requestAnimationFrame(render);
-        // captureUnetVideo()
     };
-
-    // const captureUnetVideo = async () => {
-    //     const $unet = await document.getElementById('defaultCanvas0').captureStream();
-    //     console.log($unet);
-    //     captureUnetVideo();
-    // }
 
     const randomBoolean = () => Math.random() >= 0.5;
 
@@ -204,7 +202,7 @@ import * as THREE from './three.module.js';
 
     const createPeer = (initiator, peerId) => {
         peer = new SimplePeer({ initiator, stream: ml5stream });
-            peer.data = {
+        peer.data = {
             id: peerId
         };
         peer.on('signal', data => {

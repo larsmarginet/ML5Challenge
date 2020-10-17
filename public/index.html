@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body id="body">
     <div class="loginView">
         <div class="loginView__innerWrapper">
             <h2 class="loginView__innerWrapper__title">Login</h2>
@@ -42,14 +42,26 @@
                 <div class="videoView__videos__controls__noise">
                     <img src="./assets/noise.svg" width="45" height="45" alt="noise button">
                 </div>
-                <div class="videoView__videos__controls__picture">
+                <!-- <div id="changebg" class="videoView__videos__controls__picture">
                     <img src="./assets/picture.svg" width="45" height="45" alt="picture button">
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 
-    <button id="changebg">change bg</button>
+    <div class="imagePicker">
+        <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+            <li>D</li>
+            <li>E</li>
+        </ul>
+    </div>
+
+    <div id="imgPickerBtn" class="videoView__videos__controls__picture">
+        <img src="./assets/picture.svg" width="45" height="45" alt="picture button">
+    </div>
     
      <!-- p5 -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>

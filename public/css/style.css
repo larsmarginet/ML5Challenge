@@ -209,6 +209,22 @@ h1 {
     display: none;
 }
 
+.imagePicker {
+    background-color: #645CA7;
+    color: white;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 25rem;
+    transform: translateX(25rem);
+    transition: transform 0.3s ease-in-out;
+}
+
+.imagePicker--active {
+    transform: translateX(0);
+}
+
 @media only screen and (max-width: 760px) {
     .loginView__innerWrapper {
         width: 90vw; 
